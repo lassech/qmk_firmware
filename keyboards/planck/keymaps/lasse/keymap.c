@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC},
   {KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT},
   {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT },
-  {KC_LCTL, TG(_TYPING), KC_LALT, KC_LGUI, LOWER,   KC_SPC,  OSL(_NORDIC),  RAISE, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT}
+  {KC_LCTL, TG(_TYPING), KC_LALT, KC_LGUI, LOWER,   KC_SPC,  TO(_NORDIC),  RAISE, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT}
 },
 
 
@@ -216,11 +216,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MACRO3 },
   {KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MACRO1, MACRO2},
   {KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS},
-  {KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_BSPC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS}
+  {KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TO(_QWERTY), KC_TRNS, KC_BSPC, TO(_QWERTY), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS}
 },
 
 [_NORDIC] = {
-  {MACRO2, MACRO3, POSTBX1, POWERPOINT, WORD, LECTIO, KC_TRNS, KC_PGUP, KC_UP, KC_PGDN, KC_TRNS, KC_DEL },
+  {MACRO2, MACRO3, KC_TRNS, POWERPOINT, KC_TRNS, KC_TRNS, KC_TRNS, KC_PGUP, KC_UP, KC_PGDN, KC_TRNS, KC_DEL },
   {MACRO1, KC_TRNS, MACRO1, MACRO2, MACRO3, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_RIGHT, KC_TRNS, KC_TRNS},
   {KC_TRNS, KC_TRNS, MACRO1, MACRO2, MACRO3, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS},
   {KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS}
@@ -245,41 +245,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                SEND_STRING(SS_DOWN(X_RALT) SS_TAP(X_L) SS_UP(X_RALT));
                 return false;
                 break;
-
          case MACRO3:
                SEND_STRING(SS_DOWN(X_RALT) SS_TAP(X_W) SS_UP(X_RALT));
                return false;
                 break;
-
-         case LECTIO:
-                  SEND_STRING(SS_LGUI("r"));
-                  _delay_ms(500);
-                  SEND_STRING("https://www.lectio.dk/lectio/76/login.aspx" SS_TAP(X_ENTER));
-                  _delay_ms(1000);
-                  SEND_STRING(SS_TAP(X_ENTER));
-                  return false;
-                  break;
-
-        case POSTBX1:
-         SEND_STRING(SS_LGUI("r"));
-          _delay_ms(500);
-          SEND_STRING("postbox" SS_TAP(X_ENTER));
-          return false;
-          break;
-      case POWERPOINT:
-           SEND_STRING(SS_LGUI("r"));
-            _delay_ms(500);
-            SEND_STRING("POWERPNT.EXE" SS_TAP(X_ENTER));
-            return false;
-            break;
-
-      case WORD:
-                 SEND_STRING(SS_LGUI("r"));
-                  _delay_ms(500);
-                  SEND_STRING("WINWORD.EXE" SS_TAP(X_ENTER));
-                  return false;
-                  break;
-
   }
 }
     switch (keycode) {
